@@ -1,4 +1,3 @@
-import json
 import re
 import time
 import pandas as pd
@@ -13,8 +12,7 @@ if not SERPER_API_KEY:
     raise ValueError("API Key not found. Please check your .env file.")
 
 INPUT_CSV = "ds-intern-collaborator-enrichment.csv"
-OUTPUT_CSV = "enrichment-output.csv"
-
+OUTPUT_CSV = "enrichment-automated-script-output.csv"
 
 def clean_org_name(name):
     """Normalize raw organization strings for clustering and searching."""
@@ -123,6 +121,20 @@ def main():
         enriched_data = enrich_organization(org, country)
         cache[(org, country)] = enriched_data
         time.sleep(0.2)  # Respect rate limits
+
+    for field in [
+        "company_name_resolved",
+        "company_country",
+        "website",
+        "linkedin",
+        "contact_name",
+        "contact_role",
+        "contact_email",
+        "confidence",
+        "source_url",
+        "notes",
+    ]:
+        df[field] = pd.Series("", index=df.index, dtype="object")
 
     # Map enriched data back to original dataframe
     for idx, row in df.iterrows():
