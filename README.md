@@ -27,11 +27,11 @@ pip install pandas openpyxl requests
 
 ### 2. File Requirements
 
-Ensure the following files are present in the root working directory:
+Ensure the following files are present in the working directory:
 
 * `ds-intern-collaborator-enrichment.csv` *(Original input dataset)*
-* `IGES_CDM_DB_v13.7_20250226.xlsx` *(Official IGES CDM master file)*
-* `IGES_JCM_Database_20241029.xlsx` *(Official IGES JCM master file)*
+* `IGES_CDM_DB_v13.7_20250226.xlsx` *(Official IGES CDM master file), stored in "iges-registry-data" folder*
+* `IGES_JCM_Database_20241029.xlsx` *(Official IGES JCM master file), stored in "iges-registry-data" folder*
 * `1.full_enrichment_pipeline.py`
 * `2.enrichment_cleaner_pipeline.py`
 
@@ -49,7 +49,7 @@ python 1.full_enrichment_pipeline.py; python 2.enrichment_cleaner_pipeline.py;
 
 ---
 
-## Pipeline Outputs
+## Expected Pipeline Outputs
 
 * `ds-intern-collaborator-enrichment-resolved.csv`: Intermediate dataset generated after Stage 1 registry matching and web search.
 * `ds-intern-collaborator-enrichment-final.csv`: Final cleaned and enriched dataset containing canonical entity names, verified countries, organization types, digital footprints, and corporate inquiry contacts.
